@@ -5,12 +5,11 @@ module.exports = {
     asyncHookTimeout: 60000,
 
     before: function(done) {
-        console.log('Starting test session');
         done();
     },
 
     after: function(done) {
-      console.log('Ending test session');
+      console.log('The playstation will arrive: ' + global.playstationDeliveryDate )
       done();
 
     }

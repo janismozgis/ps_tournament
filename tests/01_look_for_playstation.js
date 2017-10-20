@@ -36,36 +36,7 @@ module.exports = {
       }, [], function(result) {
         global.bestItemUrl = result.value;
       })
-      // .elements('css selector', '.s-result-item', function(items){
-      //   console.info(items);
-      //     // browser.elementIdText(function(){})
-      //     // for(var i = 0; i < items.value.length - 2; i++) {
-      //     //   browser.waitForElementVisible('#result_' + i, 10000);
-      //     //   browser.waitForElementVisible('#result_' + i + ' .a-span-last .a-spacing-mini', 10000);
-      //     //   //check the review count
-      //     //   console.info('checking for review ' + i)
-      //     //
-      //     //   browser.getText('#result_' + i + ' .a-span-last .a-spacing-mini', function(reviewValue){
-      //     //     console.info('review value for ' + i)
-      //     //       if (reviewValue.value >= 100) {
-      //     //           browser.getText('#result_' + i + ' .sx-price-whole', function(priceValue){
-      //     //               if (reviewValue.value >= 100) {
-      //     //                   //check the price
-      //     //                   console.info(global.bestItemUrl.price + ' -- ' + priceValue.value + '--' + i);
-      //     //
-      //     //                   if (!global.bestItemUrl.price || global.bestItemUrl.price > parseFloat(priceValue.value)) {
-      //     //                     console.info('we have a set! on ' + i);
-      //     //                       global.bestItemUrl.id = '#result_' + i;
-      //     //                       global.bestItemUrl.price = parseFloat(priceValue.value);
-      //     //                   }
-      //     //               }
-      //     //           });
-      //     //       }
-      //     //     }).pause(100);
-      //     // }
-      // })
-      .pause(1000, function(){
-      })
+      .pause(1000)
   },
   'try to get the playstation' : function (browser) {
     browser
@@ -74,6 +45,17 @@ module.exports = {
       .click('#add-to-cart-button')
       .waitForElementVisible('#smartShelfAddToCartNative', 30000)
       .click('#smartShelfAddToCartNative')
+      .waitForElementVisible('.a-button-input[name="proceedToCheckout"]', 10000)
+      .click('.a-button-input[name="proceedToCheckout"]')
+      .waitForElementVisible('#ap_email', 10000)
+      .setValue('#ap_email', 'hackathonforthewin@gmail.com')
+      .setValue('#ap_password', 'hackathon2017')
+      .click('#signInSubmit')
+      .waitForElementVisible('.a-declarative.a-button-text', 10000)
+      .click('.a-declarative.a-button-text')
+      .getText('.a-color-success.upsell-messaging', function(item) {
+        global.playstationDeliveryDate = item.value;
+      })
       .end();
   }
 };
