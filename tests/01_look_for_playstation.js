@@ -5,7 +5,8 @@ module.exports = {
       .searchKeyword('playstation 4')
       .selectCategoryOnTheLeft('Consoles')
       .selectShipping('Ship to Lithuania')
-      .selectReview('4 Stars & Up')
+      .selectReview(4)
+      .selectSortBy('price-asc-rank')
       .end();
   }
 };
