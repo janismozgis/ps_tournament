@@ -1,8 +1,7 @@
-exports.command = function(text) {
-  this.useXpath()
-      .waitForElementVisible("//*[@id=\"leftNavContainer\"]/ul/div/li/span/a/i/span[contains(text(),'"+text+"')]", 10000)
-      .click("//*[@id=\"leftNavContainer\"]/ul/div/li/span/a/i/span[contains(text(),'"+text+"')]")
+exports.command = function(level) {
+  this.waitForElementVisible(".a-icon.a-icon-star-medium.a-star-medium-" + level, 10000)
+      .click(".a-icon.a-icon-star-medium.a-star-medium-" + level)
       .pause(1000)
-      .useCss()
+      
   return this;
 };
