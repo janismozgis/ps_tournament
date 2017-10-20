@@ -9,6 +9,10 @@ module.exports = {
         done();
     },
 
+    beforeEach: function (browser, done) {
+        browser.resizeWindow(1920, 1080, done);
+    },
+
     after: function(done) {
       console.log('Ending test session');
       done();
